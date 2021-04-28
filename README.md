@@ -10,7 +10,7 @@ The following NuGet packages are included in this project:
 
 This is a telegram bot based on a console application. It can extract the audio file by linking to a video hosted on YouTube video hosting.
 
-At the moment, only 3 teams are implemented in this bot, 2 of which:
+At the moment, only 3 commands are implemented in this bot, 2 of which:
 
 - /help - commands list
 - /get - get a music
