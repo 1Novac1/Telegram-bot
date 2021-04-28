@@ -44,7 +44,7 @@ namespace TelegramBot.Resources.BotSource
  > The author of the song in the example: [Marshmello - Alone](https://www.youtube.com/watch?v=ALZHF5UqnU4)
  
  
- > `!IMPORTANTLY! This bot will work as long as the program is running on your computer and with an internet connection` 
+ > `!ATTENTION! This bot will work as long as the program is running on your computer and with an internet connection` 
 
 ## That's all ;)
 
