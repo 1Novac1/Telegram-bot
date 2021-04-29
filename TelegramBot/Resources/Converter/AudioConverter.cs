@@ -49,7 +49,7 @@ namespace TelegramBot.Resources.Converter
             });
         }
 
-        private bool CheckUrl(string url)
+        public bool CheckUrl(string url)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace TelegramBot.Resources.Converter
             }
         }
 
-        private void CreateMP3(string SaveToFolder, string VideoURL, string MP3Name)
+        public void CreateMP3(string SaveToFolder, string VideoURL, string MP3Name)
         {
             string _source = @SaveToFolder;
             string _videoPath = Path.Combine(_source, Video.FullName);
@@ -99,7 +99,7 @@ namespace TelegramBot.Resources.Converter
             System.GC.Collect();
         }
 
-        private string CheckMP3Path()
+        public string CheckMP3Path()
         {
             return AudioPath;
         }
