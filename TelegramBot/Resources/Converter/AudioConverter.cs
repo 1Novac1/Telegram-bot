@@ -11,45 +11,40 @@ namespace TelegramBot.Resources.Converter
     class AudioConverter
     {
         public string AudioName { get; private set; }
-        public string AudioPath { get; private set; }
+        public string AudioPath { get;  set; }
         private YouTubeVideo Video { get; set; }
 
         public async Task CreateMP3Async(string SaveToFolder, string VideoURL, string MP3Name)
         {
-            await Task.Run(() => {
-                CreateMP3(SaveToFolder, VideoURL, MP3Name);
-            });           
+            await Task.Run(() => CreateMP3(SaveToFolder, VideoURL, MP3Name));
         }
 
         public async Task<string> CheckMP3PathAsync()
         {
-            return await Task.Run(() => {
-                return CheckMP3Path();
-            });
+            return await Task.FromResult(CheckMP3Path());
         }
 
         public async Task<bool> CheckUrlAsync(string url)
         {
-            return await Task.Run(() => {
-                return CheckUrl(url);
-            });
+            return await Task.FromResult(CheckUrl(url));
         }
 
         public async Task<bool> TryGetVideoAsync(string url)
         {
-            return await Task.Run(() => {
-                return TryGetVideo(url);
-            });
+            return await Task.FromResult(TryGetVideo(url));
+        }
+
+        public async Task CheckAudioLengthAsync()
+        {
+            await Task.Run(() => CheckAudioLength());
         }
 
         public async Task DeleteAudioFileAsync(string path)
         {
-            await Task.Run(() => {
-                DeleteAudioFile(path);
-            });
+            await Task.Run(() => DeleteAudioFile(path));
         }
 
-        private bool CheckUrl(string url)
+        public bool CheckUrl(string url)
         {
             try
             {
@@ -76,11 +71,11 @@ namespace TelegramBot.Resources.Converter
             }
         }
 
-        private void CreateMP3(string SaveToFolder, string VideoURL, string MP3Name)
+        public void CreateMP3(string SaveToFolder, string VideoURL, string MP3Name)
         {
             string _source = @SaveToFolder;
             string _videoPath = Path.Combine(_source, Video.FullName);
-
+ 
             File.WriteAllBytes(_videoPath, Video.GetBytes());
 
             var _inputFile = new MediaFile { Filename = Path.Combine(_source, Video.FullName) };
@@ -99,7 +94,7 @@ namespace TelegramBot.Resources.Converter
             System.GC.Collect();
         }
 
-        private string CheckMP3Path()
+        public string CheckMP3Path()
         {
             return AudioPath;
         }
@@ -127,6 +122,17 @@ namespace TelegramBot.Resources.Converter
         {
             long _length = new System.IO.FileInfo(AudioPath).Length;
             return _length;
+        }
+
+        public void CheckAudioLength()
+        {
+            if (Video == null)
+                return;
+
+            if (Video.Info.LengthSeconds > Constants.VIDEOMAXLENGTH)
+            {
+                throw new VideoLengthExceededException("Video is too long");
+            }
         }
     }
 }
