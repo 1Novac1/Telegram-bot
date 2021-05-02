@@ -196,6 +196,7 @@
     <Compile Include="Resources\Commands\GetCommand.cs" />
     <Compile Include="Resources\Commands\HelpCommand.cs" />
     <Compile Include="Resources\Commands\StartCommand.cs" />
+    <Compile Include="Resources\VideoLengthExceededException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
