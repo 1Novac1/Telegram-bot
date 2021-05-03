@@ -120,6 +120,9 @@ namespace TelegramBot.Resources.Converter
 
         public long SizeOfAudioFile()
         {
+            if (AudioPath == null)
+                return 0;
+            
             long _length = new System.IO.FileInfo(AudioPath).Length;
             return _length;
         }
