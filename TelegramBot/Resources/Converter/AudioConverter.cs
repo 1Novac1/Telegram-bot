@@ -11,7 +11,7 @@ namespace TelegramBot.Resources.Converter
     class AudioConverter
     {
         public string AudioName { get; private set; }
-        public string AudioPath { get;  set; }
+        public string AudioPath { get; private set; }
         private YouTubeVideo Video { get; set; }
 
         public async Task CreateMP3Async(string SaveToFolder, string VideoURL, string MP3Name)
