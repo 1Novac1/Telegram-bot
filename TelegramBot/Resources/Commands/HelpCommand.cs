@@ -3,7 +3,7 @@ using Telegram.Bot.Types;
 
 namespace TelegramBot.Resources.Commands
 {
-    class HelpCommand : Command
+    public class HelpCommand : Command
     {
         public override string Name => "/help";
 

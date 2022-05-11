@@ -4,8 +4,7 @@ namespace TelegramBot.Resources
 {
     public static class Constants
     {
-        public static readonly string YTURL_0 = "https://www.youtube.com/";
-        public static readonly string YTURL_1 = "https://youtu.be/";
+        public static readonly string[] YTURLS = { "https://www.youtube.com/", "https://youtu.be/" };
 
         public static readonly long MAXLENGTH = 50000000;
        

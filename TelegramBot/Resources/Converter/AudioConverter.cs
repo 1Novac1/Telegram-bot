@@ -8,15 +8,15 @@ using System.Net;
 
 namespace TelegramBot.Resources.Converter
 {
-    class AudioConverter
+    public class AudioConverter
     {
         public string AudioName { get; private set; }
         public string AudioPath { get; private set; }
         private YouTubeVideo Video { get; set; }
 
-        public async Task CreateMP3Async(string SaveToFolder, string VideoURL, string MP3Name)
+        public async Task CreateMP3Async(string SaveToFolder, string MP3Name)
         {
-            await Task.Run(() => CreateMP3(SaveToFolder, VideoURL, MP3Name));
+            await Task.Run(() => CreateMP3(SaveToFolder, MP3Name));
         }
 
         public async Task<string> CheckMP3PathAsync()
@@ -71,7 +71,7 @@ namespace TelegramBot.Resources.Converter
             }
         }
 
-        public void CreateMP3(string SaveToFolder, string VideoURL, string MP3Name)
+        public void CreateMP3(string SaveToFolder, string MP3Name)
         {
             string _source = @SaveToFolder;
             string _videoPath = Path.Combine(_source, Video.FullName);

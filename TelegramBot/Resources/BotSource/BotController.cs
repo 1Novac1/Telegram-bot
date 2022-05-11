@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO;
 using Telegram.Bot.Args;
 
 namespace TelegramBot.Resources.BotSource
 {
-    class BotController
+    public class BotController
     {
         #region Singleton
         private static BotController instance;
@@ -40,14 +41,24 @@ namespace TelegramBot.Resources.BotSource
         private async void Bot_OnMessage(object sender, MessageEventArgs e)
         {
             var _message = e.Message;
+            var _client = Bot.Get();
+
+            if (_message.Text == null)
+            {
+                Console.WriteLine($"Received a text message in chat {_message.Chat.Id}.\nMessage type: {_message.Type} | Error");
+                await _client.SendTextMessageAsync(chatId: e.Message.Chat, text: "Invalid command!");
+                return;
+            }
 
             if (_message == null)
                 return;
 
+            if(!Directory.Exists($@"{Constants.FOLDERPATH}\{_message.Chat.Id}"))
+                Directory.CreateDirectory($@"{Constants.FOLDERPATH}\{_message.Chat.Id}");
+
             Console.WriteLine($"Received a text message in chat {_message.Chat.Id}.\nMessage: {_message.Text}");
 
             var _commands = Bot.Commands;
-            var _client = Bot.Get();
 
             foreach (var command in _commands)
             {

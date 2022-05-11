@@ -2,7 +2,7 @@
 
 namespace TelegramBot.Resources
 {
-    class VideoLengthExceededException : Exception
+    public class VideoLengthExceededException : Exception
     {
         public VideoLengthExceededException(string message) : base(message) { }
     }

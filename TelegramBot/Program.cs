@@ -4,9 +4,9 @@ using TelegramBot.Resources;
 
 namespace TelegramBot.Resources
 {
-    class Program
+    public class Program
     {
-        static void Main()
+        public static void Main()
         {
             Directory.CreateDirectory(Constants.FOLDERPATH);
             BotController.getInstance().BotInitialize();
